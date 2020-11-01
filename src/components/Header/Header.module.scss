@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+// Local variables should be computed based on default
+$paddingHeaderHorizontal: $sectionOffsetHorizontal;
+$paddingHeaderVertical: ($headerHeight - $lineHeight) / 2;
+
+.header {
+  background-color: $colorSectionBG;
+  color: $colorSectionText;
+  height: $headerHeight;
+  display: flex;
+  align-items: center;
+  padding: $paddingHeaderVertical $paddingHeaderHorizontal;
+};
+.title {
+  color: $colorSectionText,
+};

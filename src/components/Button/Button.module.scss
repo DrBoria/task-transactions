@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.button {
+  min-width: $formElementWidth;
+  height: $formElementHeight;
+  border: 0;
+
+  color: $colorFormElementText;
+
+  cursor: pointer;
+}
+
+.primary {
+  background-color: $colorFormElementBG;
+}
+
+.navigation {
+  background-color: $colorNavFormElementBG;
+}

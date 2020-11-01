@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+body {
+  height: 100vh;
+  font: $defaultFont;
+}
+
+.heading {
+  font-style: normal;
+  font-weight: bold;
+  color: $colorSectionHeaders;
+}
+
+h1, h2, h3, h4 {
+  @extend .heading;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
