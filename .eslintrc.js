@@ -21,8 +21,15 @@ module.exports = {
       },
     },
   },
+  globals: {
+    localStorage: true,
+    fetch: true,
+    window: true,
+    document: true,
+  },
   rules: {
     'react/prop-types': 'off',
+    'no-param-reassign': ['error', { props: false }],
     'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/camelcase': 'off',
     'no-underscore-dangle': 'off',
@@ -32,6 +39,7 @@ module.exports = {
     'react/no-unescaped-entities': 'off',
     'react/no-array-index-key': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    'complexity': ['error', 6],
     'import/order': [
       'error',
       {
