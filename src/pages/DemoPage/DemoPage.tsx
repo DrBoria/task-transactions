@@ -9,7 +9,6 @@ import { loginAdmin } from 'features/admin';
 
 import styles from './Demo.module.scss';
 
-
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
@@ -28,7 +27,7 @@ const TeacherSubmit = () => {
     <>
       <div className={styles.form}>
         <h1>This is demo page</h1>
-        <Button onClick={adminStudent} >Demo Button</Button>
+        <Button onClick={adminStudent}>Demo Button</Button>
 
         {success && 'Logged in'}
         {loading && 'loading...'}

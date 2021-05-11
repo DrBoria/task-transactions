@@ -1,11 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import {
-  loginAdminQuery,
-  IAdminCredentials,
-  ILoginAdminResponse,
-} from 'api/admin';
+import { loginAdminQuery, IAdminCredentials, ILoginAdminResponse } from 'api/admin';
+/* eslint-disable import/no-cycle */
 import { AppThunk } from 'store';
 import { headers } from 'utils/getBasicHeaders';
 
@@ -43,26 +40,24 @@ const comments = createSlice({
   },
 });
 
-export const {
-  loginAdminStart,
-  loginAdminSuccess,
-  loginAdminFailure,
-} = comments.actions;
+export const { loginAdminStart, loginAdminSuccess, loginAdminFailure } = comments.actions;
 export default comments.reducer;
 
 /**
  * Login admin and put token to every new query
  * @param adminCredentials
  */
-export const loginAdmin = (adminCredentials: IAdminCredentials): AppThunk => async (dispatch) => {
-  try {
-    dispatch(loginAdminStart());
-    const updatedStudent: ILoginAdminResponse = await loginAdminQuery(adminCredentials);
+export const loginAdmin =
+  (adminCredentials: IAdminCredentials): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(loginAdminStart());
+      const updatedStudent: ILoginAdminResponse = await loginAdminQuery(adminCredentials);
 
-    // Set bearer after successfull login
-    headers.set('bearer', `${updatedStudent.token?.accessToken}`);
-    dispatch(loginAdminSuccess());
-  } catch (err) {
-    dispatch(loginAdminFailure(err));
-  }
-};
+      // Set bearer after successfull login
+      headers.set('bearer', `${updatedStudent.token?.accessToken}`);
+      dispatch(loginAdminSuccess());
+    } catch (err) {
+      dispatch(loginAdminFailure(err));
+    }
+  };

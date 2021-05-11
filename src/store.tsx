@@ -1,6 +1,7 @@
 import { configureStore, Action } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
 
+/* eslint-disable import/no-cycle */
 import rootReducer, { RootState } from './rootReducer';
 
 const store = configureStore({

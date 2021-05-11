@@ -3,21 +3,16 @@ import React, { FC } from 'react';
 
 import styles from './Button.module.scss';
 
-type buttonProps = {
+type ButtonProps = {
   children: string;
   onClick?: () => void;
   disabled?: boolean;
   buttonType?: string;
 };
 
-const Button: FC<buttonProps> = ({ children, onClick, disabled = false, buttonType = 'primary' }) => (
+const Button: FC<ButtonProps> = ({ children, onClick, disabled = false, buttonType = 'primary' }) => (
   <>
-    <button 
-      className={`${styles.button} ${styles[buttonType]}`} 
-      type="submit" 
-      onClick={onClick} 
-      disabled={disabled}
-    >
+    <button className={`${styles.button} ${styles[buttonType]}`} type="submit" onClick={onClick} disabled={disabled}>
       {children}
     </button>
   </>

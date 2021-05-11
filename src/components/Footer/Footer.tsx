@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 
 import styles from './Footer.module.scss';
 
-
 type FooterProps = {
   title: string;
 };

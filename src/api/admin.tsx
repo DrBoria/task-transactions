@@ -16,12 +16,10 @@ export interface ILoginAdminResponse {
   };
 }
 
-
 // *********************************************************
 // ********************* API ENDPOINTS *********************
 // *********************************************************
 const LOGIN_URL: string = `${process.env.REACT_APP_BASIC_URL}/${process.env.REACT_APP_LOGIN}`;
-
 
 // *********************************************************
 // ********************* API QUERIES ***********************
@@ -36,4 +34,3 @@ export const loginAdminQuery = async (studentData: IAdminCredentials): Promise<I
   const response: ILoginAdminResponse = await fetchApi(LOGIN_URL, headers, 'POST', studentData);
   return response;
 };
-

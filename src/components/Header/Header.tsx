@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 
 import styles from './Header.module.scss';
 
-
 type HeaderProps = {
   title: string;
 };

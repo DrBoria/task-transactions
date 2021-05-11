@@ -1,45 +1,48 @@
 module.exports = {
   root: true,
-  extends: ['airbnb-typescript', 'prettier', 'prettier/react', 'prettier/@typescript-eslint'],
+  env: {
+    browser: true,
+    node: true,
+  },
   parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'react-hooks', 'prettier'],
+  extends: ['airbnb-typescript', 'prettier', 'prettier/@typescript-eslint', 'prettier/react'],
   parserOptions: {
     project: './tsconfig.json',
-    ecmaVersion: 2018,
-    sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'eslint-comments'],
-  overrides: [
-    {
-      files: ['**/*.tsx'],
-      rules: {},
-    },
-  ],
   settings: {
     'import/resolver': {
       node: {
-        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', 'd.ts', 'spec.ts', 'spec.tsx'],
       },
+      'babel-module': {},
+      typescript: {},
+    },
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx', 'spec.ts', 'spec.tsx', 'd.ts'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx', 'spec.ts', 'spec.tsx', 'd.ts'],
+    },
+    react: {
+      version: 'detect',
     },
   },
-  globals: {
-    localStorage: true,
-    fetch: true,
-    window: true,
-    document: true,
-  },
   rules: {
-    'react/prop-types': 'off',
-    'no-param-reassign': ['error', { props: false }],
-    'react/jsx-props-no-spreading': 'off',
-    '@typescript-eslint/camelcase': 'off',
-    'no-underscore-dangle': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'jsx-a11y/no-noninteractive-element-interactions': 'off',
-    'react/no-unescaped-entities': 'off',
-    'react/no-array-index-key': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
-    'complexity': ['error', 6],
+    'react/jsx-props-no-spreading': 0,
+    'react/prop-types': 0,
+    'react/no-danger': 0,
+    'no-debugger': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-noninteractive-element-interactions': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'no-underscore-dangle': 0,
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     'import/order': [
       'error',
       {
@@ -49,12 +52,17 @@ module.exports = {
           {
             pattern: './*.module.scss',
             group: 'sibling',
-            position: 'after'
-          }
-        ]
-      }
+            position: 'after',
+          },
+        ],
+      },
     ],
-    'jsx-a11y/label-has-associated-control': 'off',
-    'no-restricted-imports': ['error', { patterns: ['../*'] }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/stories.*', '**/.storybook/**/*.*'],
+        peerDependencies: true,
+      },
+    ],
   },
 };

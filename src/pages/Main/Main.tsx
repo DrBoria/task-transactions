@@ -7,7 +7,6 @@ import Header from 'components/Header';
 
 import styles from './Main.module.scss';
 
-
 type MainProps = {
   children?: React.ReactElement<any>;
 };
