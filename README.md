@@ -1,11 +1,11 @@
-# React Toolkit Template
+# React Toolkit Template with Styled-Components
 
 > App based on typescript, react and redux toolkit (https://redux-toolkit.js.org/tutorials/basic-tutorial)
 
 ## INSTALLATION and START
 
-    git clone https://github.com/DrBoria/react-toolkit-template.git
-    cd ./freact-toolkit-template
+    git clone https://github.com/DrBoria/react-toolkit-template-styled.git
+    cd ./react-toolkit-template-styled
     cp .env.development .env
     npm i
     npm start
