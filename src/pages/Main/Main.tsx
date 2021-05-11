@@ -5,8 +5,6 @@ import { Grid } from '@material-ui/core';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 
-import styles from './Main.module.scss';
-
 type MainProps = {
   children?: React.ReactElement<any>;
 };
@@ -17,9 +15,7 @@ const Main: FC<MainProps> = ({ children }) => {
       <Grid item>
         <Header title="Demo Header" />
       </Grid>
-      <Grid item className={styles.mainContainer}>
-        {children}
-      </Grid>
+      <Grid item>{children}</Grid>
       <Grid item>
         <Footer title="Demo Footer" />
       </Grid>

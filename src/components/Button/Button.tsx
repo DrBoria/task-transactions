@@ -1,8 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { FC } from 'react';
 
-import styles from './Button.module.scss';
-
 type ButtonProps = {
   children: string;
   onClick?: () => void;
@@ -10,9 +8,9 @@ type ButtonProps = {
   buttonType?: string;
 };
 
-const Button: FC<ButtonProps> = ({ children, onClick, disabled = false, buttonType = 'primary' }) => (
+const Button: FC<ButtonProps> = ({ children, onClick, disabled = false }) => (
   <>
-    <button className={`${styles.button} ${styles[buttonType]}`} type="submit" onClick={onClick} disabled={disabled}>
+    <button type="submit" onClick={onClick} disabled={disabled}>
       {children}
     </button>
   </>

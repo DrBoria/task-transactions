@@ -7,8 +7,6 @@ import Button from 'components/Button';
 
 import { loginAdmin } from 'features/admin';
 
-import styles from './Demo.module.scss';
-
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
@@ -25,7 +23,7 @@ const TeacherSubmit = () => {
 
   return (
     <>
-      <div className={styles.form}>
+      <div>
         <h1>This is demo page</h1>
         <Button onClick={adminStudent}>Demo Button</Button>
 
