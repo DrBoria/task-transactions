@@ -33,7 +33,7 @@ const menuFields = [
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
-  const { success, loading, error } = useSelector((state: RootState) => state.admin);
+  const { success, loading, error } = useSelector((state: RootState) => state.ui);
 
   const adminStudent = () => {
     dispatcher(

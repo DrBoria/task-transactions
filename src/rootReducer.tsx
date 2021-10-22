@@ -1,10 +1,11 @@
 /* eslint-disable import/no-cycle */
 import { combineReducers } from '@reduxjs/toolkit';
+
 // Used for generating type based on reducer
-import adminReducer from 'features/admin';
+import uiReducer from 'features/ui';
 
 const rootReducer = combineReducers({
-  admin: adminReducer,
+  ui: uiReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
