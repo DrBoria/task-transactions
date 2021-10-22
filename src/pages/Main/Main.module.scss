@@ -1,6 +1,0 @@
-@import '../../styles/variables.scss';
-
-// Add scss variables to calc using #(variable_name) construction
-.mainContainer {
-    height: calc(100vh - #{$headerHeight} - #{$footerHeight});
-}

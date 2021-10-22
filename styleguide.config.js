@@ -49,8 +49,12 @@ module.exports = {
   // Sections that is displayed in styleguidelist
   sections: [
     {
-      name: 'All',
-      components: 'src/components/**/index.ts*',
+      name: 'Components',
+      components: 'src/components/**/*.tsx',
+    },
+    {
+      name: 'Sections',
+      components: 'src/sections/**/*.tsx',
     },
   ],
 

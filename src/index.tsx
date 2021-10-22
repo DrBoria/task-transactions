@@ -2,23 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import theme from 'styles/theme';
+import ThemeProviderWrapper from 'styles/ThemeProviderWrapper';
 
 import store from './store';
+
+import './index.css';
 
 const render = () => {
   // eslint-disable-next-line global-require
   const AppRoutes = require('routes').default;
 
   ReactDOM.render(
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
+    <ThemeProviderWrapper>
+      <Provider store={store}>
         <Router>
           <AppRoutes />
         </Router>
-      </ThemeProvider>
-    </Provider>,
+      </Provider>
+    </ThemeProviderWrapper>,
     document.getElementById('root'),
   );
 };

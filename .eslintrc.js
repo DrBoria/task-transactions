@@ -40,9 +40,13 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react/no-array-index-key': 0,
+    'no-param-reassign': ['error', { props: false }],
     'no-underscore-dangle': 0,
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
+    'import/prefer-default-export': 0,
+    'spaced-comment': 0,
     'import/order': [
       'error',
       {
