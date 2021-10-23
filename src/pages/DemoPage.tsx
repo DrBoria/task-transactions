@@ -5,7 +5,7 @@ import { RootState } from 'rootReducer';
 import Header from 'sections/Header';
 import Intro from 'sections/Intro';
 
-import { loginAdmin } from 'features/admin';
+import { loginAdmin } from 'models/admin';
 
 const menuFields = [
   {

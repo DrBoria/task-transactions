@@ -2,7 +2,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 // Used for generating type based on reducer
-import uiReducer from 'features/ui';
+import uiReducer from 'models/ui';
 
 const rootReducer = combineReducers({
   ui: uiReducer,
