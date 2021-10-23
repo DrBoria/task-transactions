@@ -33,7 +33,7 @@ const menuFields = [
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
-  const { success, loading, error } = useSelector((state: RootState) => state.ui);
+  const { loading } = useSelector((state: RootState) => state.ui);
 
   const adminStudent = () => {
     dispatcher(
@@ -49,9 +49,7 @@ const TeacherSubmit = () => {
       <Header menu={menuFields} />
       <Intro submit={adminStudent} />
 
-      {success && 'Logged in'}
       {loading && 'loading...'}
-      {error && 'Error'}
     </>
   );
 };

@@ -1,38 +1,58 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppThunk } from 'store';
+import { TMessage } from 'api/types';
 
-interface IUserListState {
+export type IUIState = {
   loading: boolean;
-  error: string | null;
-  success: boolean;
-}
-
-const initialState: IUserListState = {
-  loading: false,
-  error: null,
-  success: false,
+  successStatus: number | null;
+  errorStatus: number | null;
+  messages: TMessage[];
 };
 
-const comments = createSlice({
+const initialState: IUIState = {
+  loading: false,
+  successStatus: null,
+  errorStatus: null,
+  messages: [],
+};
+
+const ui = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    loadingStart(state) {
-      state.loading = true;
-      state.error = null;
-      state.success = false;
+    toggleLoading(state, action) {
+      state.loading = action.payload.isLoading;
     },
-    loadingSuccess(state) {
-      state.loading = false;
-      state.error = null;
-      state.success = true;
+    setSuccsesStatus(state, action: PayloadAction<number | null>) {
+      state.successStatus = action.payload;
     },
-    loadingFailure(state, action: PayloadAction<string>) {
-      state.loading = false;
-      state.error = action.payload;
-      state.success = false;
+    setErrorStatus(state, action: PayloadAction<number | null>) {
+      state.errorStatus = action.payload;
+    },
+    showMessage(state, action: PayloadAction<TMessage>) {
+      state.messages = [...state.messages, action.payload];
+    },
+    hideFirstMessage(state) {
+      state.messages = state.messages.slice(1);
+    },
+    hideMessage(state, action: PayloadAction<TMessage>) {
+      state.messages = state.messages.filter((message) => message.text !== action.payload.text);
     },
   },
 });
 
-export const { loadingStart, loadingSuccess, loadingFailure } = comments.actions;
-export default comments.reducer;
+export const { toggleLoading, setSuccsesStatus, setErrorStatus, showMessage, hideFirstMessage, hideMessage } =
+  ui.actions;
+export default ui.reducer;
+
+export const showHideMessage =
+  (message: TMessage): AppThunk =>
+  async (dispatch) => {
+    const messageShowTime = 3000;
+
+    dispatch(showMessage(message));
+
+    setTimeout(() => {
+      dispatch(hideFirstMessage());
+    }, messageShowTime);
+  };

@@ -1,9 +1,8 @@
 import { loginAdminQuery, IAdminCredentials, ILoginAdminResponse } from 'api/admin';
-/* eslint-disable import/no-cycle */
 import { AppThunk } from 'store';
 import { headers } from 'utils/getBasicHeaders';
 
-import { loadingStart, loadingSuccess, loadingFailure } from './ui';
+import { toggleLoading, showHideMessage } from './ui';
 
 /**
  * Login admin and put token to every new query
@@ -13,13 +12,14 @@ export const loginAdmin =
   (adminCredentials: IAdminCredentials): AppThunk =>
   async (dispatch) => {
     try {
-      dispatch(loadingStart());
+      dispatch(toggleLoading({ isLoading: true }));
       const updatedStudent: ILoginAdminResponse = await loginAdminQuery(adminCredentials);
 
       // Set bearer after successfull login
       headers.set('bearer', `${updatedStudent.token?.accessToken}`);
-      dispatch(loadingSuccess());
+      dispatch(showHideMessage({ type: 'success', text: 'Logged in successfully' }));
     } catch (err) {
-      dispatch(loadingFailure(`${err}`));
+      dispatch(toggleLoading({ isLoading: false }));
+      dispatch(showHideMessage({ type: 'error', text: `${err}` }));
     }
   };

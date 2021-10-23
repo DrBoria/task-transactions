@@ -41,6 +41,7 @@ module.exports = {
       },
     ],
     'react/no-array-index-key': 0,
+    'import/no-cycle': [2, { maxDepth: 1 }],
     'no-param-reassign': ['error', { props: false }],
     'no-underscore-dangle': 0,
     'no-shadow': 'off',
