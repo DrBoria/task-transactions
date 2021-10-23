@@ -1,22 +1,22 @@
-import { loginAdminQuery, IAdminCredentials, ILoginAdminResponse } from 'api/admin';
+import { demoQuery, TDemoCredentials, TDemoResponse } from 'api/demoQuery';
 import { AppThunk } from 'store';
 import { headers } from 'utils/getBasicHeaders';
 
 import { toggleLoading, showHideMessage } from './ui';
 
 /**
- * Login admin and put token to every new query
- * @param adminCredentials
+ * Demo login and put token to every new query
+ * @param demoCredentials
  */
-export const loginAdmin =
-  (adminCredentials: IAdminCredentials): AppThunk =>
+export const demoLogin =
+  (demoCredentials: TDemoCredentials): AppThunk =>
   async (dispatch) => {
     try {
       dispatch(toggleLoading({ isLoading: true }));
-      const updatedStudent: ILoginAdminResponse = await loginAdminQuery(adminCredentials);
+      const demoResponse: TDemoResponse = await demoQuery(demoCredentials);
 
       // Set bearer after successfull login
-      headers.set('bearer', `${updatedStudent.token?.accessToken}`);
+      headers.set('bearer', `${demoResponse.token?.accessToken}`);
       dispatch(showHideMessage({ type: 'success', text: 'Logged in successfully' }));
     } catch (err) {
       dispatch(toggleLoading({ isLoading: false }));

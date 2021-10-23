@@ -5,7 +5,7 @@ import { RootState } from 'rootReducer';
 import Header from 'sections/Header';
 import Intro from 'sections/Intro';
 
-import { loginAdmin } from 'models/admin';
+import { demoLogin } from 'models/demo';
 
 const menuFields = [
   {
@@ -35,9 +35,9 @@ const TeacherSubmit = () => {
 
   const { loading } = useSelector((state: RootState) => state.ui);
 
-  const adminStudent = () => {
+  const demoAction = () => {
     dispatcher(
-      loginAdmin({
+      demoLogin({
         email: 'demo-email@gmail.com',
         password: 'demopass',
       }),
@@ -47,7 +47,7 @@ const TeacherSubmit = () => {
   return (
     <>
       <Header menu={menuFields} />
-      <Intro submit={adminStudent} />
+      <Intro submit={demoAction} />
 
       {loading && 'loading...'}
     </>

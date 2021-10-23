@@ -15,7 +15,7 @@ const Intro: FC<any> = ({ submit }) => (
         <TitleSection>
           We <Highlighted>design</Highlighted> & <Highlighted>develop</Highlighted> robust solutions for your products
         </TitleSection>
-        <Button onClick={submit}>MAKE ORDER</Button>
+        <Button onClick={submit}>MAKE DEMO QUERY</Button>
       </Column>
 
       {/* Position relative is fix for absolute positioning of image */}
