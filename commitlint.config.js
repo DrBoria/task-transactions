@@ -20,7 +20,6 @@ module.exports = {
         ...readSubDirs('src/components'),
         ...readSubDirs('src/models'),
         ...readSubDirs('src/pages'),
-        ...readSubDirs('src/routes'),
         ...readSubDirs('src/sections'),
         ...readSubDirs('src/utils'),
       ],
