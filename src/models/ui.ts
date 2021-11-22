@@ -1,23 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk } from 'store';
 import { TMessage } from 'api/types';
+import { TAppThunk } from 'store';
 
-export type IUIState = {
+export type TUIState = {
   loading: boolean;
   successStatus: number | null;
   errorStatus: number | null;
   messages: TMessage[];
 };
 
-const initialState: IUIState = {
-  loading: false,
+const initialState: TUIState = {
+  loading:       false,
   successStatus: null,
-  errorStatus: null,
-  messages: [],
+  errorStatus:   null,
+  messages:      [],
 };
 
 const ui = createSlice({
-  name: 'ui',
+  name:     'ui',
   initialState,
   reducers: {
     toggleLoading(state, action) {
@@ -46,7 +46,7 @@ export const { toggleLoading, setSuccsesStatus, setErrorStatus, showMessage, hid
 export default ui.reducer;
 
 export const showHideMessage =
-  (message: TMessage): AppThunk =>
+  (message: TMessage): TAppThunk =>
   async (dispatch) => {
     const messageShowTime = 3000;
 

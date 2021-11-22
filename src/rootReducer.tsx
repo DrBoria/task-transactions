@@ -1,13 +1,11 @@
-/* eslint-disable import/no-cycle */
 import { combineReducers } from '@reduxjs/toolkit';
-
 // Used for generating type based on reducer
 import uiReducer from 'models/ui';
 
-const rootReducer = combineReducers({
+const RootReducer = combineReducers({
   ui: uiReducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type TRootState = ReturnType<typeof RootReducer>;
 
-export default rootReducer;
+export default RootReducer;

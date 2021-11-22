@@ -1,5 +1,6 @@
-import { demoQuery, TDemoCredentials, TDemoResponse } from 'api/demoQuery';
-import { AppThunk } from 'store';
+import { DemoQuery, TDemoCredentials, TDemoResponse } from 'api/demoQuery';
+import { TAppThunk } from 'store';
+
 import { headers } from 'utils/getBasicHeaders';
 
 import { toggleLoading, showHideMessage } from './ui';
@@ -8,18 +9,18 @@ import { toggleLoading, showHideMessage } from './ui';
  * Demo login and put token to every new query
  * @param demoCredentials
  */
-export const demoLogin =
-  (demoCredentials: TDemoCredentials): AppThunk =>
+export const fetchDemoLogin =
+  (demoCredentials: TDemoCredentials): TAppThunk =>
   async (dispatch) => {
     try {
       dispatch(toggleLoading({ isLoading: true }));
-      const demoResponse: TDemoResponse = await demoQuery(demoCredentials);
+      const demoResponse: TDemoResponse = await DemoQuery(demoCredentials);
 
       // Set bearer after successfull login
       headers.set('bearer', `${demoResponse.token?.accessToken}`);
       dispatch(showHideMessage({ type: 'success', text: 'Logged in successfully' }));
-    } catch (err) {
+    } catch (error) {
       dispatch(toggleLoading({ isLoading: false }));
-      dispatch(showHideMessage({ type: 'error', text: `${err}` }));
+      dispatch(showHideMessage({ type: 'error', text: `${error}` }));
     }
   };
