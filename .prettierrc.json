@@ -10,10 +10,13 @@
   "importOrderSeparation": true,
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
+    "^api",
     "^components",
+    "^models",
+    "^pages",
     "^sections",
-    "^utils",
     "^styles",
+    "^utils",
     "^assets",
     "(styles.ts)",
     "^[./]"
