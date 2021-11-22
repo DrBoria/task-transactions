@@ -1,7 +1,7 @@
-import { fetchDemoLogin } from 'models/demo';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRootState } from 'rootReducer';
+
+import { fetchDemoLogin } from 'models/demo';
 
 import Header from 'sections/Header';
 import Intro from 'sections/Intro';
