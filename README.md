@@ -23,7 +23,7 @@
        /utils            functions helpers (fetch, get headers and so on)
        index.tsx         app entry point
        index.css         basic styles of application (html, body)
-       rootReducer.ts    store combiner
+       RootReducer.ts    store combiner
        store.ts          store of application
        routes.tsx        routes of application
 

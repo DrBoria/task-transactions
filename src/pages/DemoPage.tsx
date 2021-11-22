@@ -1,46 +1,45 @@
+import { fetchDemoLogin } from 'models/demo';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'rootReducer';
+import { TRootState } from 'rootReducer';
 
 import Header from 'sections/Header';
 import Intro from 'sections/Intro';
 
-import { demoLogin } from 'models/demo';
-
 const menuFields = [
   {
-    id: '1',
+    id:    '1',
     title: 'title',
-    url: 'url',
+    url:   'url',
   },
   {
-    id: '2',
+    id:    '2',
     title: 'title',
-    url: 'url',
+    url:   'url',
   },
   {
-    id: '3',
+    id:    '3',
     title: 'title',
-    url: 'url',
+    url:   'url',
   },
   {
-    id: '4',
+    id:    '4',
     title: 'title',
-    url: 'url',
+    url:   'url',
   },
 ];
 
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
-  const { loading } = useSelector((state: RootState) => state.ui);
+  const { loading } = useSelector((state: TRootState) => state.ui);
 
   const demoAction = () => {
     dispatcher(
-      demoLogin({
-        email: 'demo-email@gmail.com',
+      fetchDemoLogin({
+        email:    'demo-email@gmail.com',
         password: 'demopass',
-      }),
+      })
     );
   };
 

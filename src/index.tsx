@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import ThemeProviderWrapper from 'styles/ThemeProviderWrapper';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import Alerts from 'sections/AlertsSection';
 
-import store from './store';
+import ThemeProviderWrapper from 'styles/ThemeProviderWrapper';
 
 import './index.css';
+import store from './store';
 
 const render = () => {
-  // eslint-disable-next-line global-require
+  // Fix for hot module replacement working properly
+  /* eslint @typescript-eslint/no-var-requires: "off" */
+  /* eslint @typescript-eslint/naming-convention: "off" */
+  /* eslint unicorn/prefer-module: "off" */
   const AppRoutes = require('routes').default;
 
   ReactDOM.render(
@@ -22,7 +26,7 @@ const render = () => {
         <Alerts />
       </Provider>
     </ThemeProviderWrapper>,
-    document.getElementById('root'),
+    document.querySelector('#root')
   );
 };
 
