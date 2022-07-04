@@ -1,0 +1,38 @@
+name: 'Deploy to gcloud'
+
+# **What it does**: Renders the content of every page and check all internal links.
+# **Why we have it**: To make sure all links connect correctly.
+# **Who does it impact**: Docs content.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.x
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Types Check
+        run: npm run tsc
+
+      - name: ESLint
+        run: npm run lint:js
+
+      - name: StyleLint
+        run: npm run lint:css
+
+      - name: Building App
+        run: npm run build --if-present

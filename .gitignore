@@ -21,3 +21,6 @@
 
 # log files
 *log
+
+# deployment related
+dev-library*
