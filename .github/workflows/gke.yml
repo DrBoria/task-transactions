@@ -14,7 +14,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: dev-lib-cluster     # Add your cluster name here.
   GKE_ZONE: europe-central2  # Add your cluster zone here.
-  DEPLOYMENT_NAME: gke-test # Add your deployment name here.
+  DEPLOYMENT_NAME: gke-hello-app # Add your deployment name here.
   IMAGE: static-site
 
 jobs:
