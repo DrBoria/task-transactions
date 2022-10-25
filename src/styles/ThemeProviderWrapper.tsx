@@ -12,12 +12,14 @@ const MediaProvider = styled.div`
     --container-offset: calc((100% - ${screens.desktop.width}px - ${offsets.section}) / 2);
 
     --height-header: ${variables.header.height.mobile}px;
+    --height-footer: ${variables.footer.height.mobile}px;
     --offset-section: ${variables.offsets.section.mobile}px;
     --offset-between-elements: ${variables.offsets.betweenElements.mobile}px;
     --offset-element-content: ${variables.offsets.elementContent.mobile}px;
 
     @media (min-width: ${screens.tablet.width}px) {
       --height-header: ${variables.header.height.tablet}px;
+      --height-footer: ${variables.footer.height.tablet}px;
       --offset-section: ${variables.offsets.section.tablet}px;
       --offset-between-elements: ${variables.offsets.betweenElements.tablet}px;
       --offset-element-content: ${variables.offsets.elementContent.tablet}px;
@@ -25,6 +27,7 @@ const MediaProvider = styled.div`
 
     @media (min-width: ${screens.desktop.width}px) {
       --height-header: ${variables.header.height.desktop}px;
+      --height-footer: ${variables.footer.height.desktop}px;
       --offset-section: ${variables.offsets.section.desktop}px;
       --offset-between-elements: ${variables.offsets.betweenElements.desktop}px;
       --offset-element-content: ${variables.offsets.elementContent.desktop}px;

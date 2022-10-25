@@ -1,11 +1,8 @@
-import { TDefaultTheme, ThemeProvider } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Button from 'components/Button';
 
-import { dark } from 'styles/themes';
-
 import { HeaderSection } from './Header.styles';
-import { Link } from 'react-router-dom';
 
 type TMenu = {
   id: string;
@@ -18,15 +15,13 @@ export type THeaderProps = {
 };
 
 const Header = ({ menu }: THeaderProps) => (
-  <ThemeProvider theme={{ colors: dark } as TDefaultTheme}>
-    <HeaderSection>
-      {menu.map((field, index) => (
-        <Link to={field.url} key={index}>
-          <Button offsetRight>{field.title}</Button>
-        </Link>
-      ))}
-    </HeaderSection>
-  </ThemeProvider>
+  <HeaderSection>
+    {menu.map((field, index) => (
+      <Link to={field.url} key={index}>
+        <Button offsetRight>{field.title}</Button>
+      </Link>
+    ))}
+  </HeaderSection>
 );
 
 export default Header;

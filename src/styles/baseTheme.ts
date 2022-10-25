@@ -9,12 +9,12 @@ const screens = {
   // Width
   mobileWidth:  320,
   tabletWidth:  600,
-  desktopWidth: 1600,
+  desktopWidth: 1800,
 
   // Height
   mobileHeight:  640,
   tabletHeight:  720,
-  desktopHeight: 980,
+  desktopHeight: 1140,
 };
 
 export const devices = {
@@ -46,6 +46,9 @@ const base = {
   elements: {
     header: {
       height: 'var(--height-header)',
+    },
+    footer: {
+      height: 'var(--height-footer)',
     },
     form: {
       height: '50px',
@@ -104,6 +107,13 @@ const base = {
     },
 
     header: {
+      height: {
+        mobile:  75,
+        tablet:  100,
+        desktop: 150,
+      },
+    },
+    footer: {
       height: {
         mobile:  75,
         tablet:  100,

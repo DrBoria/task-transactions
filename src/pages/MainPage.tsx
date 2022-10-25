@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 
 
-import { FlexibleSectionContainer, PageContainer } from 'components/Containers';
+import { FlexibleSectionContainer } from 'components/Containers';
 import { THeaderCol } from 'components/Table';
 
 
@@ -23,6 +23,7 @@ import Transactions from 'sections/Transactions';
 import { dark, light } from 'styles/themes';
 import Balance from 'sections/Balance';
 import AddTransactionForm from 'sections/AddTransactionForm';
+import Footer from 'sections/Footer';
 
 
 const menuFields = [
@@ -62,7 +63,7 @@ const transactionColumns: THeaderCol[] = [
   },
 ];
 
-const TeacherSubmit = () => {
+const MainPage = () => {
   const dispatcher = useDispatch();
 
   const { displayedTransactionsList } = useSelector((state: TRootState) => state.transactions);
@@ -73,7 +74,10 @@ const TeacherSubmit = () => {
 
   return (
     <>
-      <Header menu={menuFields} />
+      <ThemeProvider theme={{ colors: dark }}>
+        <Header menu={menuFields} />
+      </ThemeProvider>
+
       <ThemeProvider theme={{ colors: light }}>
         <ThemeProvider theme={{ colors: dark }}>
           <FlexibleSectionContainer noHeightLimit>
@@ -85,8 +89,12 @@ const TeacherSubmit = () => {
 
         <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
       </ThemeProvider>
+
+      <ThemeProvider theme={{ colors: dark }}>
+        <Footer />
+      </ThemeProvider>
     </>
   );
 };
 
-export default TeacherSubmit;
+export default MainPage;
