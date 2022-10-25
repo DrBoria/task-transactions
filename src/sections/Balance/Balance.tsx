@@ -6,7 +6,7 @@ import { Highlighted } from 'components/Typography';
 
 import { dark } from 'styles/themes';
 
-import { TitleSection, Column, IntroSection } from './Intro.styles';
+import { TitleSection, Column, IntroSection } from './Balance.styles';
 
 const Intro: FC<any> = ({ submit }) => (
   <ThemeProvider theme={{ colors: dark }}>
