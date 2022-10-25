@@ -45,8 +45,8 @@ export const BasicSection = styled.div<TSectionProps>`
 // Should be used only once per page
 export const PageContainer = styled.div`
   min-height: 100vh;
-  padding: ${({ theme }) => theme.offsets.container};
   padding-top: ${({ theme }) => theme.elements.header.height};
+  padding-bottom: ${({ theme }) => theme.elements.footer.height};
 `;
 
 export const HeadingContainer = styled.div<TWithBasicElementOffsets & TFullWidth>`

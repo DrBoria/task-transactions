@@ -116,8 +116,8 @@ const base = {
     footer: {
       height: {
         mobile:  75,
-        tablet:  100,
-        desktop: 150,
+        tablet:  75,
+        desktop: 75,
       },
     },
     offsets: {

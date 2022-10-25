@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 
 
-import { FlexibleSectionContainer } from 'components/Containers';
+import { FlexibleSectionContainer, PageContainer } from 'components/Containers';
 import { THeaderCol } from 'components/Table';
 
 
@@ -73,27 +73,24 @@ const MainPage = () => {
   }, []);
 
   return (
-    <>
+    <PageContainer>
       <ThemeProvider theme={{ colors: dark }}>
         <Header menu={menuFields} />
-      </ThemeProvider>
 
-      <ThemeProvider theme={{ colors: light }}>
-        <ThemeProvider theme={{ colors: dark }}>
-          <FlexibleSectionContainer noHeightLimit>
-            <Balance />
-            <Filter />
-            <AddTransactionForm />
-          </FlexibleSectionContainer>
+        <FlexibleSectionContainer noHeightLimit>
+          <Balance />
+          <Filter />
+          <AddTransactionForm />
+        </FlexibleSectionContainer>
+
+
+        <ThemeProvider theme={{ colors: light }}>
+          <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
         </ThemeProvider>
 
-        <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
-      </ThemeProvider>
-
-      <ThemeProvider theme={{ colors: dark }}>
         <Footer />
       </ThemeProvider>
-    </>
+    </PageContainer>
   );
 };
 

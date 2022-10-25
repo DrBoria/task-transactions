@@ -10,6 +10,7 @@ export const FooterSection = styled.div`
 
   display: flex;
   width: 100%;
+  height: ${({ theme }) => theme.elements.footer.height};
   padding: ${({ theme }) => `calc(${theme.offsets.section} / 2) ${theme.offsets.section}`};
 
   background: ${({ theme }) => theme.colors.section};
