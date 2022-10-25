@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 
 import TableContainer from 'components/Table';
 import { TextDisplayCell, BoldTextDisplayCell } from 'components/Table/TableCels';
+import { GridContainer } from 'components/Containers';
 import WithPagination from 'utils/withPagination';
 const ordersRows = [
   { text: 'Order Id' },
@@ -620,7 +621,7 @@ const content = [
   }}
 >
   {WithPagination(content, 10, 0).map((order) => (
-    <Fragment key={order.id}>
+    <GridContainer colsTemplate='1fr 1fr 1fr' key={order.id}>
       {/* Client Name */}
       <TextDisplayCell text={order.name} />
 
@@ -629,7 +630,7 @@ const content = [
 
       {/* Price */}
       <TextDisplayCell text={order.total} />
-    </Fragment>
+    </GridContainer>
   ))}
 </TableContainer>;
 ```
