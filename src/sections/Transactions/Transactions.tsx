@@ -8,9 +8,11 @@ import { BasicSection } from 'components/Containers';
 import TableContainer, { THeaderCol } from 'components/Table';
 import { TextDisplayCell } from 'components/Table/TableCels';
 
-import { setCurrentPage, setRowsPerPage } from 'models/transactions';
+import { deleteTransaction, setCurrentPage, setRowsPerPage } from 'models/transactions';
 
 import WithPagination from 'utils/withPagination';
+import { FiDelete } from 'react-icons/fi';
+import Button from 'components/Button';
 
 type TTransactionSection = {
   transactionsList: TTransaction[];
@@ -30,10 +32,14 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
     dispatcher(setRowsPerPage(rowsPerPageCount));
   };
   
+  const handleDeleteElement = (transactionId: number) => {
+    dispatcher(deleteTransaction(transactionId));
+  };
+  
   return (
     <BasicSection>
       <TableContainer
-        colsTemplate='repeat(6, minmax(0, 1fr));'
+        colsTemplate='repeat(7, minmax(0, 1fr));'
         headerCols={ordersRows}
         pagination={{ current: currentPage, totalPages: Math.ceil(transactionsList.length / rowsPerPage), changePage}}
         rowsPerPage={{
@@ -64,6 +70,9 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
 
             {/* Description */}
             <TextDisplayCell text={transaction.description} />
+
+            {/* Deletion */}
+            <TextDisplayCell text={<Button onClick={() => handleDeleteElement(transaction.id)}>Delete</Button>} />
           </Fragment>
         ))}
       </TableContainer>

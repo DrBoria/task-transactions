@@ -14,7 +14,7 @@ const Filter = () => {
 
   return (
       <BasicSection style={{gridArea: 'D'}}>
-        <FormLabel htmlFor='Beneficiary'>Beneficiary Filter</FormLabel>
+        <FormLabel htmlFor='Beneficiary' offsetBottom>Beneficiary Filter</FormLabel>
         <Input id='Beneficiary' name='Beneficiary' onChange={changeFilter} fullWidth />
     </BasicSection>
 )};

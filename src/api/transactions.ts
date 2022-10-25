@@ -41,3 +41,13 @@ export const PostTransaction = async (transaction: TTransaction): Promise<TTrans
   const response: TTransaction = await fetchApi(TransactionsUrl, headers, 'POST', transaction);
   return response;
 };
+
+/**
+ * Remove transaction by id
+ * @param transactionId
+ */
+export const DeleteTransaction = async (transactionId: number): Promise<TTransaction> => {
+  const headers = getBasicHeaders();
+  const response: TTransaction = await fetchApi(`${TransactionsUrl}/${transactionId}`, headers, 'DELETE');
+  return response;
+};

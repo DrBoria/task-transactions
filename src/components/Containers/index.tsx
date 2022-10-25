@@ -62,7 +62,7 @@ export const HeadingContainer = styled.div<TWithBasicElementOffsets & TFullWidth
 
 export const FlexibleSectionContainer = styled(BasicSection)`
   display: grid;
-
+  grid-gap: ${({ theme }) => theme.offsets.section};
   grid-template-areas:
     "A A"
     "B B"

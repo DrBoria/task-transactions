@@ -20,7 +20,7 @@ import Transactions from 'sections/Transactions';
 
 
 
-import { light } from 'styles/themes';
+import { dark, light } from 'styles/themes';
 import Balance from 'sections/Balance';
 import AddTransactionForm from 'sections/AddTransactionForm';
 
@@ -57,6 +57,9 @@ const transactionColumns: THeaderCol[] = [
   {
     text: 'Description',
   },
+  {
+    text: 'Delete',
+  },
 ];
 
 const TeacherSubmit = () => {
@@ -71,16 +74,16 @@ const TeacherSubmit = () => {
   return (
     <>
       <Header menu={menuFields} />
-
       <ThemeProvider theme={{ colors: light }}>
-        <PageContainer>
+        <ThemeProvider theme={{ colors: dark }}>
           <FlexibleSectionContainer noHeightLimit>
             <Balance />
             <Filter />
             <AddTransactionForm />
           </FlexibleSectionContainer>
-          <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
-        </PageContainer>
+        </ThemeProvider>
+
+        <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
       </ThemeProvider>
     </>
   );

@@ -15,7 +15,7 @@ const Balance = () => {
       balance += transaction.amount;
     });
     return Math.ceil(balance);
-  }, loadedTransactionsList)
+  }, [loadedTransactionsList])
 
   return (
     <BasicSection style={{gridArea: 'A'}}>

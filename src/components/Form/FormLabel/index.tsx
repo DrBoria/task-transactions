@@ -8,6 +8,7 @@ type TFormLabelProps = {
   TFullWidth;
 
 const FormLabel = styled.label<TFormLabelProps>`
+  display: block;
   width: ${({ fullWidth }) => fullWidth && '100%'};
   margin-right: ${withOffsetsRight};
   margin-bottom: ${withOffsetBottom};

@@ -3,7 +3,7 @@ import { TAppThunk } from 'store';
 
 
 
-import { GetTransactions, PostTransaction, TTransaction } from 'api/transactions';
+import { DeleteTransaction, GetTransactions, PostTransaction, TTransaction } from 'api/transactions';
 
 
 
@@ -32,6 +32,10 @@ const transactions = createSlice({
       state.loadedTransactionsList = [...state.loadedTransactionsList, ...(action.payload || [])];
       state.displayedTransactionsList = state.loadedTransactionsList;
     },
+    deleteTransactionLocally(state, action) {
+      state.loadedTransactionsList = state.loadedTransactionsList.filter(transaction => transaction.id !== action.payload);
+      state.displayedTransactionsList = state.loadedTransactionsList;
+    },
     filterBeneficiaryTransactions(state, action) {
       state.displayedTransactionsList = state.loadedTransactionsList.filter((transaction) =>
         transaction.beneficiary.toLowerCase().includes(action.payload.toLowerCase())
@@ -47,7 +51,7 @@ const transactions = createSlice({
   },
 });
 
-export const { setTransactions, filterBeneficiaryTransactions, setCurrentPage, setRowsPerPage } = transactions.actions;
+export const { setTransactions, deleteTransactionLocally, filterBeneficiaryTransactions, setCurrentPage, setRowsPerPage } = transactions.actions;
 export default transactions.reducer;
 
 /**
@@ -67,7 +71,7 @@ export const fetchTransactions = (): TAppThunk => async (dispatch) => {
 };
 
 /**
- * Fetch and store transactions
+ * Add 1 transaction
  */
 export const addTransaction =
   ({
@@ -95,6 +99,25 @@ export const addTransaction =
       });
 
       dispatch(setTransactions([createdTransaction]));
+      dispatch(showHideMessage({ type: 'success', text: 'Transactions added successfully' }));
+    } catch (error) {
+      dispatch(toggleLoading({ isLoading: false }));
+      dispatch(showHideMessage({ type: 'error', text: `Error While adding transaction: ${error}` }));
+    }
+  };
+
+
+/**
+ * Fetch and store transactions
+ */
+export const deleteTransaction =
+  (transactionId: number): TAppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(toggleLoading({ isLoading: true }));
+      await DeleteTransaction(transactionId);
+
+      dispatch(deleteTransactionLocally(transactionId));
       dispatch(showHideMessage({ type: 'success', text: 'Transactions added successfully' }));
     } catch (error) {
       dispatch(toggleLoading({ isLoading: false }));

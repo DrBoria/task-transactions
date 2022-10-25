@@ -58,27 +58,27 @@ const AddTransactionForm = () => {
   return (
     <BasicSection style={{gridArea: 'B'}}>
       <Form onSubmit={handleSubmit}>
-        <SubTitle>Add Transaction</SubTitle>
+        <SubTitle offsetBottom>Add Transaction</SubTitle>
         <div>
           {/* amount (must be positive) */}
-          <FormLabel htmlFor='amount'>Amount *</FormLabel>
+          <FormLabel htmlFor='amount' offsetBottom>Amount *</FormLabel>
           {validation.amount && <ErrorText>{validation.amount}</ErrorText>}
           <Input id='amount' name='amount' offsetBottom fullWidth />
 
           {/* account number (not empty, numbers) */}
-          <FormLabel htmlFor='account'>Account Number *</FormLabel>
+          <FormLabel htmlFor='account' offsetBottom>Account Number *</FormLabel>
           {validation.account && <ErrorText>{validation.account}</ErrorText>}
           <Input id='account' name='account' offsetBottom fullWidth />
 
           {/* address */}
-          <FormLabel htmlFor='address'>Address</FormLabel>
+          <FormLabel htmlFor='address' offsetBottom>Address</FormLabel>
           <Input id='address' name='address' offsetBottom fullWidth />
 
           {/* description */}
-          <FormLabel htmlFor='description'>Description</FormLabel>
+          <FormLabel htmlFor='description' offsetBottom>Description</FormLabel>
           <TextArea id='description' name='description' offsetBottom fullWidth />
         </div>
-        <Submit name='Submit' value='Save' />
+        <Submit name='Submit' value='Save' fullWidth />
       </Form>
     </BasicSection>
   );
