@@ -9,7 +9,7 @@ export default {
   overlay:        '#f6f6f6',
   overlayActive:  '#ebebeb',
   label:          '#aaaaaa',
-  error:          '#f4c7c7',
+  error:          '#b53737',
   warning:        '#ffe2b7',
   info:           '#b8e7fb',
   success:        '#cce8cd',

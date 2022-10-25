@@ -9,8 +9,6 @@ import { dark } from 'styles/themes';
 const [value, setValue] = useState();
 const handleSubmit = (e) => {
   e.preventDefault();
-  data;
-  cons;
   const formData = new FormData(e.target);
   const formValues = {
     radio: formData.get('radio'),

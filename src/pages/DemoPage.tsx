@@ -21,6 +21,8 @@ import Transactions from 'sections/Transactions';
 
 
 import { light } from 'styles/themes';
+import Balance from 'sections/Balance';
+import AddTransactionForm from 'sections/AddTransactionForm';
 
 
 const menuFields = [
@@ -72,7 +74,9 @@ const TeacherSubmit = () => {
 
       <ThemeProvider theme={{ colors: light }}>
         <PageContainer>
+          <Balance />
           <Filter />
+          <AddTransactionForm />
           <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
         </PageContainer>
       </ThemeProvider>

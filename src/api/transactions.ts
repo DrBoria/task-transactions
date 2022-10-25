@@ -9,9 +9,9 @@ export type TTransaction = {
   amount: number,
   beneficiary: string,
   account: string,
-  address: string,
+  address?: string,
   date: Date,
-  description: string
+  description?: string
 };
 
 // *********************************************************
@@ -24,11 +24,20 @@ const TransactionsUrl = `${process.env.REACT_APP_BASIC_URL}/transactions`;
 // *********************************************************
 
 /**
- * This is demo query
- * @param demoCredentials
+ * Fetching all available transactions
  */
 export const GetTransactions = async (): Promise<TTransaction[]> => {
   const headers = getBasicHeaders();
   const response: TTransaction[] = await fetchApi(TransactionsUrl, headers, 'GET');
+  return response;
+};
+
+/**
+ * Adding 1 transaction
+ * @param transaction
+ */
+export const PostTransaction = async (transaction: TTransaction): Promise<TTransaction> => {
+  const headers = getBasicHeaders();
+  const response: TTransaction = await fetchApi(TransactionsUrl, headers, 'POST', transaction);
   return response;
 };

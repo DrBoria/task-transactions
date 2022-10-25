@@ -79,6 +79,10 @@ export const PlainText = styled.p<TWithBasicElementOffsets>`
   line-height: ${sizes.PlainText.lineHeight};
 `;
 
+export const ErrorText = styled(PlainText)`
+  color: ${({ theme }) => theme.colors.error};
+`;
+
 export const Highlighted = styled.span<TWithBasicElementOffsets>`
   color: ${({ theme }) => theme.colors.highlighted};
 `;

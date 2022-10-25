@@ -1,10 +1,10 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent } from 'react';
 
 import { FormLabel, Input } from 'components/Form';
 import { useDispatch } from 'react-redux';
 import { filterBeneficiaryTransactions } from 'models/transactions';
 
-const Filter: FC<any> = ({ submit }) => {
+const Filter = () => {
   const dispatcher = useDispatch();
 
   const changeFilter = (event: ChangeEvent<HTMLInputElement>) => {
