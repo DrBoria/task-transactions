@@ -1,13 +1,26 @@
-# React App Template (with styled-components and redux-toolkit)
+## Introduction
 
-> App based on typescript, react and redux-toolkit (https://redux-toolkit.js.org/tutorials/basic-tutorial)
-> and styled-components (https://styled-components.com/docs/basics)
+Application should contain list of bank transactions, based on design structure from _design.png_ file and contain following functionalities:
+
+1.  Transactions fetched from API, displayed in table or list.
+2.  Pagination (infinite-scroll or traditional, 20 items per page)
+3.  Filtering by `beneficiary` field
+4.  Form for adding new transaction to the list with basic non-empty fields validation. Add input fields for:
+    -   amount (must be positive)
+    -   account number (not empty, numbers)
+    -   address
+    -   description
+    -   date and id should be generated when submiting form
+5.  Simple communicate when success/error after form submission.
+6.  Removing transaction from the list (please add animation for that)
+
+NOTE: Points 2-5 should be done on front-end side.
 
 ## INSTALLATION and START
 
-    git clone https://github.com/DrBoria/cra-toolkit-styled.git
-    cd ./cra-toolkit-styled
+    cd ./task
     yarn
+    yarn server
     yarn start
 
 ## FOLDERS DESCRIPTION
@@ -27,16 +40,25 @@
        store.ts          store of application
        routes.tsx        routes of application
 
-## HOW TO WRITE CODE
+## API description
 
-Please use following style/princeples:
+To run API, run following commands in task directory:
 
-    1) Use only dumb components (without business logic) in components folder
-    2) Components should know how do they look like, not sections that contains it
-       It means - instead of redefining styles on every page - just make new type of button/input inside button/input component and just pass this type on your page
-    3) Make sections and pages small and readable as it possible (no need to make more than 40 lines of jsx inside page)
-    4) If you need to make query - add it in models folder based on domain
+    npm install
+    npm run server
 
-    ** styles **
-    5) All app variables should be declared in /src/styles/baseTheme.ts
-    6) Better use varables from baseTheme.ts through the projects
+Server will be available on http://localhost:3000.
+
+Available endpoints:
+
+> GET /transactions
+
+## Technologies
+
+Required technologies for development are _React_ and _Typescript_.
+
+## Summary
+
+Send us back your app with instruction how to run app and tests. Preferred way is to get URL to codesandbox or your public repository with project. In case of problems/questions feel free to ask.
+
+**Good luck!**
