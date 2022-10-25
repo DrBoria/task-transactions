@@ -26,6 +26,7 @@ NOTE: Points 2-5 should be done on front-end side.
 ## FOLDERS DESCRIPTION
 
     public/              public files for build
+    api/                 api mock for json-server
     src/                 code of all application
        /api              predefined list of queries to BE
        /models           business logic of application (like get available courses, update course etc.)
