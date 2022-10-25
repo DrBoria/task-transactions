@@ -18,7 +18,7 @@ const Balance = () => {
   }, loadedTransactionsList)
 
   return (
-    <BasicSection>
+    <BasicSection style={{gridArea: 'A'}}>
       <SectionTitle>Balance</SectionTitle>
       <Highlighted>
         <PlainText>{totalBalance}</PlainText>

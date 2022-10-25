@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 
 
-import { PageContainer } from 'components/Containers';
+import { FlexibleSectionContainer, PageContainer } from 'components/Containers';
 import { THeaderCol } from 'components/Table';
 
 
@@ -74,13 +74,16 @@ const TeacherSubmit = () => {
 
       <ThemeProvider theme={{ colors: light }}>
         <PageContainer>
-          <Balance />
-          <Filter />
-          <AddTransactionForm />
+          <FlexibleSectionContainer noHeightLimit>
+            <Balance />
+            <Filter />
+            <AddTransactionForm />
+          </FlexibleSectionContainer>
           <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
         </PageContainer>
       </ThemeProvider>
     </>
   );
 };
+
 export default TeacherSubmit;

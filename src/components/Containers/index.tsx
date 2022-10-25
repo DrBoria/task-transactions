@@ -1,13 +1,10 @@
 import styled, { css } from 'styled-components';
 
+
+
 import { devices } from 'styles/baseTheme';
-import {
-  TWithBasicElementOffsets,
-  withOffsetBottom,
-  withOffsetsRight,
-  TFullWidth,
-  withFullWidth,
-} from 'styles/helpers';
+import { TWithBasicElementOffsets, withOffsetBottom, withOffsetsRight, TFullWidth, withFullWidth } from 'styles/helpers';
+
 
 type TContainersProps = {
   className?: string;
@@ -33,17 +30,11 @@ const WithoutHeightLimit = (noHeightLimit?: boolean) =>
 // Use this conteiner for wrapping any section on page
 // No usage restrictions
 export const BasicSection = styled.div<TSectionProps>`
-  height: ${({ theme }) => `calc(${theme.screens.mobile.height}px - ${theme.elements.header.height})`};
-  max-height: ${({ theme }) => `calc(${theme.screens.desktop.height} - ${theme.elements.header.height})`};
   padding: ${({ theme: { offsets } }) => offsets.section};
 
   background-color: ${({ theme }) => theme.colors.section};
 
-  @media ${devices.tablet} {
-    height: ${({ theme }) => `calc(${theme.screens.tablet.height} - ${theme.elements.header.height})`};
-  }
   @media ${devices.desktop} {
-    height: ${({ theme }) => `calc(${theme.screens.desktop.height} - ${theme.elements.header.height})`};
     padding: ${({ theme }) => `${theme.offsets.section} ${theme.offsets.container}`};
   }
 
@@ -66,4 +57,22 @@ export const HeadingContainer = styled.div<TWithBasicElementOffsets & TFullWidth
   ${withFullWidth}
   margin-right: ${withOffsetsRight};
   margin-bottom: ${withOffsetBottom};
+`;
+
+
+export const FlexibleSectionContainer = styled(BasicSection)`
+  display: grid;
+
+  grid-template-areas:
+    "A A"
+    "B B"
+    "C C"
+    "D D";
+
+  @media ${devices.tablet} {
+    grid-template-areas:
+    "A A B B B"
+    "C C B B B"
+    "D D B B B";
+  }
 `;

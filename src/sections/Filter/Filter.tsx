@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 import { FormLabel, Input } from 'components/Form';
 import { useDispatch } from 'react-redux';
 import { filterBeneficiaryTransactions } from 'models/transactions';
+import { BasicSection } from 'components/Containers';
 
 const Filter = () => {
   const dispatcher = useDispatch();
@@ -12,10 +13,10 @@ const Filter = () => {
   }
 
   return (
-      <div>
-        <FormLabel htmlFor='Beneficiary'>Beneficiary</FormLabel>
-        <Input id='Beneficiary' name='Beneficiary' onChange={changeFilter} offsetBottom />
-    </div>
+      <BasicSection style={{gridArea: 'D'}}>
+        <FormLabel htmlFor='Beneficiary'>Beneficiary Filter</FormLabel>
+        <Input id='Beneficiary' name='Beneficiary' onChange={changeFilter} fullWidth />
+    </BasicSection>
 )};
 
 export default Filter;
