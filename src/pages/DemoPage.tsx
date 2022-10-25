@@ -1,10 +1,26 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRootState } from 'rootReducer';
+import { ThemeProvider } from 'styled-components';
 
-import { fetchDemoLogin } from 'models/demo';
+
+
+import { THeaderCol } from 'components/Table';
+
+
+
+import { fetchTransactions } from 'models/transactions';
+
+
 
 import Header from 'sections/Header';
-import Intro from 'sections/Intro';
+import Transactions from 'sections/Transactions';
+
+
+
+import { dark } from 'styles/themes';
+import { PageContainer } from 'components/Containers';
+
 
 const menuFields = [
   {
@@ -29,26 +45,51 @@ const menuFields = [
   },
 ];
 
+const transactionColumns: THeaderCol[] = [
+  {
+    text: 'Amount',
+    
+  },
+  {
+    text: 'Beneficiary',
+    
+  },
+  {
+    text: 'Account',
+    
+  },
+  {
+    text: 'Address',
+    
+  },
+  {
+    text: 'Date',
+    
+  },
+  {
+    text: 'Description',
+    
+  },
+];
+
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
-  const { loading } = useSelector((state: TRootState) => state.ui);
+  const { transactionsList } = useSelector((state: TRootState) => state.transactions);
 
-  const demoAction = () => {
-    dispatcher(
-      fetchDemoLogin({
-        email:    'demo-email@gmail.com',
-        password: 'demopass',
-      })
-    );
-  };
+  useEffect(() => {
+    dispatcher(fetchTransactions());
+  }, []);
 
   return (
     <>
       <Header menu={menuFields} />
-      <Intro submit={demoAction} />
 
-      {loading && 'loading...'}
+      <ThemeProvider theme={dark}>
+        <PageContainer>
+          <Transactions transactionsList={transactionsList} ordersRows={transactionColumns} />
+        </PageContainer>
+      </ThemeProvider>
     </>
   );
 };

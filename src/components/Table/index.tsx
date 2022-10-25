@@ -7,6 +7,13 @@ import { SubTitle } from 'components/Typography';
 import { StyledHeaderCell } from './TableCels/styles';
 import { Grid, PaginationContainer } from './styles';
 
+export type THeaderCol = {
+  text: string;
+  align?: string;
+  sort?: () => any;
+  isSortable?: boolean;
+}
+
 type TTableContainerProps = {
   pagination?: {
     current: number;
@@ -18,12 +25,7 @@ type TTableContainerProps = {
     current: number;
     changeElementsPerPage: (elementsPerPage: number) => void;
   };
-  headerCols?: {
-    text: string;
-    align?: string;
-    sort?: () => any;
-    isSortable?: boolean;
-  }[];
+  headerCols?: THeaderCol[];
   colsTemplate: string;
   children: ReactNode;
 };

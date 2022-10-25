@@ -1,29 +1,57 @@
-import { FC } from 'react';
-import { ThemeProvider } from 'styled-components';
+import { FC, Fragment } from 'react';
 
-import Button from 'components/Button';
-import { Highlighted } from 'components/Typography';
+import { TTransaction } from 'api/transactions';
 
-import { dark } from 'styles/themes';
+import TableContainer, { THeaderCol } from 'components/Table';
+import { TextDisplayCell } from 'components/Table/TableCels';
 
-import { TitleSection, Column, IntroSection } from './Transactions.styles';
+import WithPagination from 'utils/withPagination';
 
-const Intro: FC<any> = ({ submit }) => (
-  <ThemeProvider theme={{ colors: dark }}>
-    <IntroSection>
-      <Column>
-        <TitleSection>
-          We <Highlighted>design</Highlighted> & <Highlighted>develop</Highlighted> robust solutions for your products
-        </TitleSection>
-        <Button onClick={submit}>MAKE DEMO QUERY</Button>
-      </Column>
+import { BasicSection } from 'components/Containers';
 
-      {/* Position relative is fix for absolute positioning of image */}
-      <Column style={{ position: 'relative' }}>
-        <img src='https://images.pexels.com/photos/4406335/pexels-photo-4406335.jpeg' width='400' height='400' alt='' />
-      </Column>
-    </IntroSection>
-  </ThemeProvider>
+type TTransactionSection = {
+  transactionsList: TTransaction[];
+  ordersRows?: THeaderCol[];
+};
+
+const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows }) => (
+    <BasicSection>
+      <TableContainer
+        colsTemplate='repeat(6, minmax(0, 1fr));'
+        headerCols={ordersRows}
+        pagination={{ current: 2, totalPages: 10, changePage: console.log }}
+        rowsPerPage={{
+          options: [
+            { value: 10, text: '10' },
+            { value: 20, text: '20' },
+          ],
+          current: 20,
+          changeElementsPerPage: console.log,
+        }}
+      >
+        {WithPagination(transactionsList, 10, 0).map((transaction) => (
+          <Fragment key={transaction.id}>
+            {/* Amount */}
+            <TextDisplayCell text={transaction.amount} />
+
+            {/* Beneficiary */}
+            <TextDisplayCell text={transaction.beneficiary} />
+
+            {/* Account */}
+            <TextDisplayCell text={transaction.account} />
+
+            {/* Address */}
+            <TextDisplayCell text={transaction.address} />
+
+            {/* Date */}
+            <TextDisplayCell text={new Date(transaction.date).toLocaleDateString("en-US")} />
+
+            {/* Description */}
+            <TextDisplayCell text={transaction.description} />
+          </Fragment>
+        ))}
+      </TableContainer>
+    </BasicSection>
 );
 
-export default Intro;
+export default Transactions;

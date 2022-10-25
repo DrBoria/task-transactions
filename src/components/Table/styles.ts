@@ -7,8 +7,11 @@ export const PaginationContainer = styled.div`
 
 export const Grid = styled.div`
   display: grid;
-  grid-column-gap: ${({ theme }) => theme.offsets.batweenElements};
+  grid-column-gap: ${({ theme }) => `calc(${theme.offsets.batweenElements} / 4)`};
+  grid-row-gap: ${({ theme }) => `calc(${theme.offsets.batweenElements} / 4)`};
   grid-template-rows: 1fr;
   grid-template-columns: ${({ colsTemplate }: { colsTemplate: string }) => colsTemplate};
   align-items: center;
+
+  background-color: ${({ theme }) => theme.colors.sectionContent}
 `;

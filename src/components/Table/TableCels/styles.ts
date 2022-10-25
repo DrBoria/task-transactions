@@ -9,7 +9,10 @@ type TStyledCellProps = {
 export const StyledTextCell = styled.div<TStyledCellProps>`
   padding: ${({ theme: { offsets } }) => offsets.elementContent};
 
+  word-wrap: break-word;
+  height: 100%;
   text-align: ${({ align = 'center' }) => align};
+  background-color: ${({ theme }) => theme.colors.section};
 `;
 
 export const StyledHeaderCell = styled(StyledTextCell)`
