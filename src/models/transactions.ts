@@ -1,34 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TAppThunk } from 'store';
 
-
-
 import { DeleteTransaction, GetTransactions, PostTransaction, TTransaction } from 'api/transactions';
 
-
-
-import { toggleLoading, showHideMessage } from './ui';
-import { ThemeContext } from 'styled-components';
+import { showHideMessage } from './ui';
 import { sleep } from 'utils/sleep';
 import { animations } from 'styles/baseTheme';
-
 
 export type TUIState = {
   loadedTransactionsList: TTransaction[];
   displayedTransactionsList: TTransaction[];
-  currentPage: number,
-  rowsPerPage: number,
+  currentPage: number;
+  rowsPerPage: number;
 };
 
 const initialState: TUIState = {
-  loadedTransactionsList: [],
+  loadedTransactionsList:    [],
   displayedTransactionsList: [],
-  currentPage: 0,
-  rowsPerPage: 20,
+  currentPage:               0,
+  rowsPerPage:               20,
 };
 
 const transactions = createSlice({
-  name: 'transactions',
+  name:     'transactions',
   initialState,
   reducers: {
     setTransactions(state, action) {
@@ -36,7 +30,9 @@ const transactions = createSlice({
       state.displayedTransactionsList = state.loadedTransactionsList;
     },
     deleteTransactionLocally(state, action) {
-      state.loadedTransactionsList = state.loadedTransactionsList.filter(transaction => transaction.id !== action.payload);
+      state.loadedTransactionsList = state.loadedTransactionsList.filter(
+        (transaction) => transaction.id !== action.payload
+      );
       state.displayedTransactionsList = state.loadedTransactionsList;
     },
     filterBeneficiaryTransactions(state, action) {
@@ -54,7 +50,13 @@ const transactions = createSlice({
   },
 });
 
-export const { setTransactions, deleteTransactionLocally, filterBeneficiaryTransactions, setCurrentPage, setRowsPerPage } = transactions.actions;
+export const {
+  setTransactions,
+  deleteTransactionLocally,
+  filterBeneficiaryTransactions,
+  setCurrentPage,
+  setRowsPerPage,
+} = transactions.actions;
 export default transactions.reducer;
 
 /**
@@ -94,8 +96,8 @@ export const addTransaction =
         address,
         description,
         beneficiary: 'John Doe',
-        date: new Date(),
-        id: Date.now() // TODO: replace with UUID
+        date:        new Date(),
+        id:          Date.now(), // TODO: replace with UUID
       });
 
       dispatch(setTransactions([createdTransaction]));
@@ -104,7 +106,6 @@ export const addTransaction =
       dispatch(showHideMessage({ type: 'error', text: `Error While adding transaction: ${error}` }));
     }
   };
-
 
 /**
  * Fetch and store transactions

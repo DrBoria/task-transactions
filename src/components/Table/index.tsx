@@ -13,7 +13,7 @@ export type THeaderCol = {
   align?: string;
   sort?: () => any;
   isSortable?: boolean;
-}
+};
 
 type TTableContainerProps = {
   pagination?: {

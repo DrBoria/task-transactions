@@ -25,9 +25,9 @@ export const devices = {
 
 export const animations = {
   time: {
-    deletion: 300
-  }
-}
+    deletion: 300,
+  },
+};
 
 const basicOffset = 8;
 const base = {

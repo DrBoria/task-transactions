@@ -1,14 +1,6 @@
 {
-  "extends": [
-    "stylelint-config-prettier",
-    "stylelint-config-recommended",
-    "stylelint-config-rational-order"
-  ],
-  "plugins": [
-    "stylelint-order",
-    "stylelint-config-rational-order/plugin",
-    "stylelint-declaration-strict-value"
-  ],
+  "extends": ["stylelint-config-prettier", "stylelint-config-recommended", "stylelint-config-rational-order"],
+  "plugins": ["stylelint-order", "stylelint-config-rational-order/plugin", "stylelint-declaration-strict-value"],
   "customSyntax": "@stylelint/postcss-css-in-js",
   "defaultSeverity": "error",
   "rules": {
@@ -26,9 +18,7 @@
     "selector-no-qualifying-type": [
       true,
       {
-        "ignore": [
-          "attribute"
-        ]
+        "ignore": ["attribute"]
       }
     ],
     "function-url-no-scheme-relative": true,
@@ -51,15 +41,7 @@
       {
         "disableFix": true,
         "expandShorthand": true,
-        "ignoreValues": [
-          "/100%/",
-          "/0/",
-          "/=>/",
-          "auto",
-          "inherit",
-          "transparent",
-          "/theme(.)+/"
-        ]
+        "ignoreValues": ["/100%/", "/0/", "/=>/", "auto", "inherit", "transparent", "/theme(.)+/"]
       }
     ],
     "order/order": [

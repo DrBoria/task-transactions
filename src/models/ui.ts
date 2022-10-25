@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TAppThunk } from 'store';
 
-
-
 import { TMessage } from 'api/types';
-
 
 export type TUIState = {
   loading: boolean;
@@ -14,10 +11,10 @@ export type TUIState = {
 };
 
 const initialState: TUIState = {
-  loading: false,
+  loading:       false,
   successStatus: null,
-  errorStatus: null,
-  messages: [],
+  errorStatus:   null,
+  messages:      [],
 };
 
 const ui = createSlice({
@@ -42,7 +39,6 @@ const ui = createSlice({
     hideMessage(state, action: PayloadAction<TMessage>) {
       state.messages = state.messages.filter((message) => message.text !== action.payload.text);
     },
-
   },
 });
 

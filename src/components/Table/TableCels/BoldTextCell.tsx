@@ -9,7 +9,9 @@ type TBoldTextCellProps = {
 const BoldTextCell = ({ text, align = 'left', ...props }: TBoldTextCellProps) => {
   return (
     <StyledTextCell align={align} {...props}>
-      <b><PlainText>{text}</PlainText></b>
+      <b>
+        <PlainText>{text}</PlainText>
+      </b>
     </StyledTextCell>
   );
 };

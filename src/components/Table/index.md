@@ -621,7 +621,6 @@ const content = [
 >
   {WithPagination(content, 10, 0).map((order) => (
     <Fragment key={order.id}>
-
       {/* Client Name */}
       <TextDisplayCell text={order.name} />
 

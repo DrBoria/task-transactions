@@ -4,7 +4,7 @@ import uiReducer from 'models/ui';
 import transactionsReducer from 'models/transactions';
 
 const RootReducer = combineReducers({
-  ui: uiReducer,
+  ui:           uiReducer,
   transactions: transactionsReducer,
 });
 

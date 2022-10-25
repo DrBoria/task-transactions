@@ -2,10 +2,7 @@ import { useState, ReactNode } from 'react';
 import styled, { createGlobalStyle, TDefaultTheme, ThemeProvider } from 'styled-components';
 import StyledReset from 'styled-reset';
 
-
-
 import themes from './baseTheme';
-
 
 const MediaProvider = styled.div`
   ${({ theme: { animations, variables, screens, offsets } }) => `

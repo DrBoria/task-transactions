@@ -10,13 +10,16 @@ const Filter = () => {
 
   const changeFilter = (event: ChangeEvent<HTMLInputElement>) => {
     dispatcher(filterBeneficiaryTransactions(event.target.value));
-  }
+  };
 
   return (
-      <BasicSection style={{gridArea: 'D'}}>
-        <FormLabel htmlFor='Beneficiary' offsetBottom>Beneficiary Filter</FormLabel>
-        <Input id='Beneficiary' name='Beneficiary' onChange={changeFilter} fullWidth />
+    <BasicSection style={{ gridArea: 'D' }}>
+      <FormLabel htmlFor='Beneficiary' offsetBottom>
+        Beneficiary Filter
+      </FormLabel>
+      <Input id='Beneficiary' name='Beneficiary' onChange={changeFilter} fullWidth />
     </BasicSection>
-)};
+  );
+};
 
 export default Filter;

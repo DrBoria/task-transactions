@@ -1,14 +1,9 @@
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 
-
-
 import { basicFont } from 'components/Typography';
 
-
-
 import { withOffsetBottom, withOffsetsRight, TWithBasicElementOffsets, TFullWidth } from 'styles/helpers';
-
 
 type TTextAreaProps = {
   name: string;
@@ -34,4 +29,5 @@ const TextArea = styled.textarea<TTextAreaProps>`
   border-radius: ${({ theme }) => theme.border.radius};
 `;
 
-export { TextArea };TextArea
+export { TextArea };
+TextArea;

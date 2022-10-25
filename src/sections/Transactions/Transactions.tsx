@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRootState } from 'rootReducer';
-import { CSSTransition } from 'react-transition-group'; 
+import { CSSTransition } from 'react-transition-group';
 
 import { TTransaction } from 'api/transactions';
 
@@ -13,7 +13,6 @@ import { deleteTransaction, setCurrentPage, setRowsPerPage } from 'models/transa
 
 import WithPagination from 'utils/withPagination';
 import Button from 'components/Button';
-import { useTheme } from 'styled-components';
 import { animations } from 'styles/baseTheme';
 
 type TTransactionSection = {
@@ -25,28 +24,28 @@ type TTransactionSection = {
 const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows }) => {
   const dispatcher = useDispatch();
 
-  const [deletingTransactionId, setDeletingTransactionId] = useState(NaN);
+  const [deletingTransactionId, setDeletingTransactionId] = useState(Number.NaN);
   const { currentPage, rowsPerPage } = useSelector((state: TRootState) => state.transactions);
 
   const changePage = (pageNumber: number) => {
     dispatcher(setCurrentPage(pageNumber));
-  }
+  };
 
   const changeElementsPerPage = (rowsPerPageCount: number) => {
     dispatcher(setRowsPerPage(rowsPerPageCount));
   };
-  
+
   const handleDeleteElement = (transactionId: number) => {
     setDeletingTransactionId(transactionId);
     dispatcher(deleteTransaction(transactionId));
   };
-  
+
   return (
     <BasicSection>
       <TableContainer
         colsTemplate={`repeat(${ordersRows?.length}, minmax(0, 1fr));`}
         headerCols={ordersRows}
-        pagination={{ current: currentPage, totalPages: Math.ceil(transactionsList.length / rowsPerPage), changePage}}
+        pagination={{ current: currentPage, totalPages: Math.ceil(transactionsList.length / rowsPerPage), changePage }}
         rowsPerPage={{
           options: [
             { value: 10, text: '10' },
@@ -57,11 +56,12 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
         }}
       >
         {WithPagination(transactionsList, rowsPerPage, currentPage).map((transaction) => (
-          <CSSTransition key={transaction.id}  
+          <CSSTransition
+            key={transaction.id}
             timeout={animations.time.deletion}
             in={transaction.id !== deletingTransactionId}
             out={transaction.id === deletingTransactionId}
-            classNames="transaction"
+            classNames='transaction'
             unmountOnExit
           >
             <GridContainer colsTemplate={`repeat(${ordersRows?.length}, minmax(0, 1fr));`}>
@@ -78,7 +78,7 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
               <TextDisplayCell text={transaction.address} />
 
               {/* Date */}
-              <TextDisplayCell text={new Date(transaction.date).toLocaleDateString("en-US")} />
+              <TextDisplayCell text={new Date(transaction.date).toLocaleDateString('en-US')} />
 
               {/* Description */}
               <TextDisplayCell text={transaction.description} />
@@ -90,6 +90,7 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
         ))}
       </TableContainer>
     </BasicSection>
-)};
+  );
+};
 
 export default Transactions;

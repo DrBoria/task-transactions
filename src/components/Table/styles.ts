@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-
-
 import { TWithBasicElementOffsets, withOffsetBottom, withOffsetsRight } from 'styles/helpers';
-
 
 export const PaginationContainer = styled.div`
   display: flex;

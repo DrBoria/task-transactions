@@ -1,10 +1,13 @@
 import styled, { css } from 'styled-components';
 
-
-
 import { devices } from 'styles/baseTheme';
-import { TWithBasicElementOffsets, withOffsetBottom, withOffsetsRight, TFullWidth, withFullWidth } from 'styles/helpers';
-
+import {
+  TWithBasicElementOffsets,
+  withOffsetBottom,
+  withOffsetsRight,
+  TFullWidth,
+  withFullWidth,
+} from 'styles/helpers';
 
 type TContainersProps = {
   className?: string;
@@ -58,21 +61,20 @@ export const HeadingContainer = styled.div<TWithBasicElementOffsets & TFullWidth
   margin-bottom: ${withOffsetBottom};
 `;
 
-
 export const FlexibleSectionContainer = styled(BasicSection)`
   display: grid;
   grid-gap: ${({ theme }) => theme.offsets.section};
   grid-template-areas:
-    "A A"
-    "B B"
-    "C C"
-    "D D";
+    'A A'
+    'B B'
+    'C C'
+    'D D';
 
   @media ${devices.tablet} {
     grid-template-areas:
-    "A A B B B"
-    "C C B B B"
-    "D D B B B";
+      'A A B B B'
+      'C C B B B'
+      'D D B B B';
   }
 `;
 
