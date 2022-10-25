@@ -1,18 +1,20 @@
-import { FC, Fragment } from 'react';
+import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TRootState } from 'rootReducer';
+import { CSSTransition } from 'react-transition-group'; 
 
 import { TTransaction } from 'api/transactions';
 
-import { BasicSection } from 'components/Containers';
+import { BasicSection, GridContainer } from 'components/Containers';
 import TableContainer, { THeaderCol } from 'components/Table';
 import { TextDisplayCell } from 'components/Table/TableCels';
 
 import { deleteTransaction, setCurrentPage, setRowsPerPage } from 'models/transactions';
 
 import WithPagination from 'utils/withPagination';
-import { FiDelete } from 'react-icons/fi';
 import Button from 'components/Button';
+import { useTheme } from 'styled-components';
+import { animations } from 'styles/baseTheme';
 
 type TTransactionSection = {
   transactionsList: TTransaction[];
@@ -22,6 +24,8 @@ type TTransactionSection = {
 
 const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows }) => {
   const dispatcher = useDispatch();
+
+  const [deletingTransactionId, setDeletingTransactionId] = useState(NaN);
   const { currentPage, rowsPerPage } = useSelector((state: TRootState) => state.transactions);
 
   const changePage = (pageNumber: number) => {
@@ -33,13 +37,14 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
   };
   
   const handleDeleteElement = (transactionId: number) => {
+    setDeletingTransactionId(transactionId);
     dispatcher(deleteTransaction(transactionId));
   };
   
   return (
     <BasicSection>
       <TableContainer
-        colsTemplate='repeat(7, minmax(0, 1fr));'
+        colsTemplate={`repeat(${ordersRows?.length}, minmax(0, 1fr));`}
         headerCols={ordersRows}
         pagination={{ current: currentPage, totalPages: Math.ceil(transactionsList.length / rowsPerPage), changePage}}
         rowsPerPage={{
@@ -52,28 +57,36 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
         }}
       >
         {WithPagination(transactionsList, rowsPerPage, currentPage).map((transaction) => (
-          <Fragment key={transaction.id}>
-            {/* Amount */}
-            <TextDisplayCell text={transaction.amount} />
+          <CSSTransition key={transaction.id}  
+            timeout={animations.time.deletion}
+            in={transaction.id !== deletingTransactionId}
+            out={transaction.id === deletingTransactionId}
+            classNames="transaction"
+            unmountOnExit
+          >
+            <GridContainer colsTemplate={`repeat(${ordersRows?.length}, minmax(0, 1fr));`}>
+              {/* Amount */}
+              <TextDisplayCell text={transaction.amount} />
 
-            {/* Beneficiary */}
-            <TextDisplayCell text={transaction.beneficiary} />
+              {/* Beneficiary */}
+              <TextDisplayCell text={transaction.beneficiary} />
 
-            {/* Account */}
-            <TextDisplayCell text={transaction.account} />
+              {/* Account */}
+              <TextDisplayCell text={transaction.account} />
 
-            {/* Address */}
-            <TextDisplayCell text={transaction.address} />
+              {/* Address */}
+              <TextDisplayCell text={transaction.address} />
 
-            {/* Date */}
-            <TextDisplayCell text={new Date(transaction.date).toLocaleDateString("en-US")} />
+              {/* Date */}
+              <TextDisplayCell text={new Date(transaction.date).toLocaleDateString("en-US")} />
 
-            {/* Description */}
-            <TextDisplayCell text={transaction.description} />
+              {/* Description */}
+              <TextDisplayCell text={transaction.description} />
 
-            {/* Deletion */}
-            <TextDisplayCell text={<Button onClick={() => handleDeleteElement(transaction.id)}>Delete</Button>} />
-          </Fragment>
+              {/* Deletion */}
+              <TextDisplayCell text={<Button onClick={() => handleDeleteElement(transaction.id)}>Delete</Button>} />
+            </GridContainer>
+          </CSSTransition>
         ))}
       </TableContainer>
     </BasicSection>

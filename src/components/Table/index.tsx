@@ -5,7 +5,8 @@ import Pagination from 'components/Pagination';
 import { SubTitle } from 'components/Typography';
 
 import { StyledHeaderCell } from './TableCels/styles';
-import { Grid, PaginationContainer } from './styles';
+import { PaginationContainer, TableWrapper } from './styles';
+import { GridContainer } from 'components/Containers';
 
 export type THeaderCol = {
   text: string;
@@ -40,18 +41,19 @@ const TableContainer = ({ children, headerCols, colsTemplate, pagination, rowsPe
 
   return (
     <div>
-      <Grid colsTemplate={colsTemplate} offsetBottom>
+      <TableWrapper offsetBottom>
         {/* Table Head */}
-        {headerCols?.map(({ text, sort = () => {}, isSortable, align }) => (
-          <StyledHeaderCell key={text} onClick={sort} align={align}>
-            <SubTitle>{text}</SubTitle>
-            {isSortable && '⟠'}
-          </StyledHeaderCell>
-        ))}
-
+        <GridContainer colsTemplate={colsTemplate}>
+          {headerCols?.map(({ text, sort = () => {}, isSortable, align }) => (
+            <StyledHeaderCell key={text} onClick={sort} align={align}>
+              <SubTitle>{text}</SubTitle>
+              {isSortable && '⟠'}
+            </StyledHeaderCell>
+          ))}
+        </GridContainer>
         {/* Table Content (table cells will be here) */}
         {children}
-      </Grid>
+      </TableWrapper>
 
       <PaginationContainer>
         {/* Pagination with arrows */}

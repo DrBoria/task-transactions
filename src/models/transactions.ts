@@ -8,6 +8,9 @@ import { DeleteTransaction, GetTransactions, PostTransaction, TTransaction } fro
 
 
 import { toggleLoading, showHideMessage } from './ui';
+import { ThemeContext } from 'styled-components';
+import { sleep } from 'utils/sleep';
+import { animations } from 'styles/baseTheme';
 
 
 export type TUIState = {
@@ -59,13 +62,11 @@ export default transactions.reducer;
  */
 export const fetchTransactions = (): TAppThunk => async (dispatch) => {
   try {
-    dispatch(toggleLoading({ isLoading: true }));
     const transactionList: TTransaction[] = await GetTransactions();
 
     dispatch(setTransactions(transactionList));
     dispatch(showHideMessage({ type: 'success', text: 'Transactions fetched successfully' }));
   } catch (error) {
-    dispatch(toggleLoading({ isLoading: false }));
     dispatch(showHideMessage({ type: 'error', text: `Probably server is down. Try to run 'yarn server' ${error}` }));
   }
 };
@@ -87,7 +88,6 @@ export const addTransaction =
   }): TAppThunk =>
   async (dispatch) => {
     try {
-      dispatch(toggleLoading({ isLoading: true }));
       const createdTransaction: TTransaction = await PostTransaction({
         amount,
         account,
@@ -101,7 +101,6 @@ export const addTransaction =
       dispatch(setTransactions([createdTransaction]));
       dispatch(showHideMessage({ type: 'success', text: 'Transactions added successfully' }));
     } catch (error) {
-      dispatch(toggleLoading({ isLoading: false }));
       dispatch(showHideMessage({ type: 'error', text: `Error While adding transaction: ${error}` }));
     }
   };
@@ -114,13 +113,11 @@ export const deleteTransaction =
   (transactionId: number): TAppThunk =>
   async (dispatch) => {
     try {
-      dispatch(toggleLoading({ isLoading: true }));
-      await DeleteTransaction(transactionId);
+      await Promise.all([DeleteTransaction(transactionId), sleep(animations.time.deletion)]);
 
       dispatch(deleteTransactionLocally(transactionId));
-      dispatch(showHideMessage({ type: 'success', text: 'Transactions added successfully' }));
+      dispatch(showHideMessage({ type: 'success', text: 'Transactions deleted successfully' }));
     } catch (error) {
-      dispatch(toggleLoading({ isLoading: false }));
-      dispatch(showHideMessage({ type: 'error', text: `Error While adding transaction: ${error}` }));
+      dispatch(showHideMessage({ type: 'error', text: `Error while deleting transaction: ${error}` }));
     }
   };

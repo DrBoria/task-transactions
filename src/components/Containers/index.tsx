@@ -51,7 +51,6 @@ export const PageContainer = styled.div`
 
 export const HeadingContainer = styled.div<TWithBasicElementOffsets & TFullWidth>`
   width: 40%;
-
   text-align: left;
 
   ${withFullWidth}
@@ -75,4 +74,17 @@ export const FlexibleSectionContainer = styled(BasicSection)`
     "C C B B B"
     "D D B B B";
   }
+`;
+
+export const GridContainer = styled.div<TWithBasicElementOffsets & { colsTemplate: string }>`
+  display: grid;
+  grid-gap: ${({ theme }) => `calc(${theme.offsets.batweenElements} / 4)`};
+  grid-template-rows: 1fr;
+  grid-template-columns: ${({ colsTemplate }: { colsTemplate: string }) => colsTemplate};
+  align-items: center;
+
+  background-color: ${({ theme }) => theme.colors.sectionContent};
+
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
 `;

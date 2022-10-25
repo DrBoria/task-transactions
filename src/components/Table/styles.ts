@@ -10,12 +10,10 @@ export const PaginationContainer = styled.div`
   justify-content: center;
 `;
 
-export const Grid = styled.div<TWithBasicElementOffsets & { colsTemplate: string }>`
+export const TableWrapper = styled.div<TWithBasicElementOffsets>`
   display: grid;
-  grid-column-gap: ${({ theme }) => `calc(${theme.offsets.batweenElements} / 4)`};
-  grid-row-gap: ${({ theme }) => `calc(${theme.offsets.batweenElements} / 4)`};
-  grid-template-rows: 1fr;
-  grid-template-columns: ${({ colsTemplate }: { colsTemplate: string }) => colsTemplate};
+  grid-gap: ${({ theme }) => `calc(${theme.offsets.batweenElements} / 4)`};
+
   align-items: center;
 
   background-color: ${({ theme }) => theme.colors.sectionContent};

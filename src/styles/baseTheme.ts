@@ -23,6 +23,12 @@ export const devices = {
   desktop: `(min-width: ${screens.desktopWidth}px)`,
 };
 
+export const animations = {
+  time: {
+    deletion: 300
+  }
+}
+
 const basicOffset = 8;
 const base = {
   zIndex: {
@@ -94,6 +100,8 @@ const base = {
       width:  screens.desktopWidth,
     },
   },
+
+  animations,
 
   /** ******************************************************* */
   /** ******************** Variables ************************ */
