@@ -5,6 +5,7 @@ import Button from 'components/Button';
 import { dark } from 'styles/themes';
 
 import { HeaderSection } from './Header.styles';
+import { Link } from 'react-router-dom';
 
 type TMenu = {
   id: string;
@@ -20,9 +21,9 @@ const Header = ({ menu }: THeaderProps) => (
   <ThemeProvider theme={{ colors: dark } as TDefaultTheme}>
     <HeaderSection>
       {menu.map((field, index) => (
-        <a href={field.url} key={index}>
-          <Button>{field.title}</Button>
-        </a>
+        <Link to={field.url} key={index}>
+          <Button offsetRight>{field.title}</Button>
+        </Link>
       ))}
     </HeaderSection>
   </ThemeProvider>

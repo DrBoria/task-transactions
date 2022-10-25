@@ -1,29 +1,21 @@
-import { FC } from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ChangeEvent, FC } from 'react';
 
-import Button from 'components/Button';
-import { Highlighted } from 'components/Typography';
+import { FormLabel, Input } from 'components/Form';
+import { useDispatch } from 'react-redux';
+import { filterBeneficiaryTransactions } from 'models/transactions';
 
-import { dark } from 'styles/themes';
+const Filter: FC<any> = ({ submit }) => {
+  const dispatcher = useDispatch();
 
-import { TitleSection, Column, IntroSection } from './Filter.styles';
+  const changeFilter = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatcher(filterBeneficiaryTransactions(event.target.value));
+  }
 
-const Intro: FC<any> = ({ submit }) => (
-  <ThemeProvider theme={{ colors: dark }}>
-    <IntroSection>
-      <Column>
-        <TitleSection>
-          We <Highlighted>design</Highlighted> & <Highlighted>develop</Highlighted> robust solutions for your products
-        </TitleSection>
-        <Button onClick={submit}>MAKE DEMO QUERY</Button>
-      </Column>
+  return (
+      <div>
+        <FormLabel htmlFor='Beneficiary'>Beneficiary</FormLabel>
+        <Input id='Beneficiary' name='Beneficiary' onChange={changeFilter} offsetBottom />
+    </div>
+)};
 
-      {/* Position relative is fix for absolute positioning of image */}
-      <Column style={{ position: 'relative' }}>
-        <img src='https://images.pexels.com/photos/4406335/pexels-photo-4406335.jpeg' width='400' height='400' alt='' />
-      </Column>
-    </IntroSection>
-  </ThemeProvider>
-);
-
-export default Intro;
+export default Filter;

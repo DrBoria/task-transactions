@@ -26,6 +26,7 @@ const Container = styled.div<TFullWidth>`
 const Number = styled<any>(Button)`
   font-weight: 700;
 
+  cursor: pointer;
   background: ${({ active, theme }) => (active ? theme.colors.overlayActive : theme.colors.overlay)};
   border: none;
 `;
@@ -35,12 +36,13 @@ const Pagination = ({ pagesCount, currentPage, onChangePage }: TPaginationProps)
     <IoIosArrowBack />
     {[...new Array(pagesCount).keys()].map((pageNumber) => (
       <Number
+        key={pageNumber}
         onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
           onChangePage(event, pageNumber);
         }}
         active={currentPage === pageNumber}
       >
-        {pageNumber}
+        {pageNumber + 1}
       </Number>
     ))}
     <IoIosArrowForward />

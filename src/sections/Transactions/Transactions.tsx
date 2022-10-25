@@ -1,35 +1,51 @@
 import { FC, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { TRootState } from 'rootReducer';
 
 import { TTransaction } from 'api/transactions';
 
+import { BasicSection } from 'components/Containers';
 import TableContainer, { THeaderCol } from 'components/Table';
 import { TextDisplayCell } from 'components/Table/TableCels';
 
-import WithPagination from 'utils/withPagination';
+import { setCurrentPage, setRowsPerPage } from 'models/transactions';
 
-import { BasicSection } from 'components/Containers';
+import WithPagination from 'utils/withPagination';
 
 type TTransactionSection = {
   transactionsList: TTransaction[];
   ordersRows?: THeaderCol[];
+  currentPage?: number;
 };
 
-const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows }) => (
+const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows }) => {
+  const dispatcher = useDispatch();
+  const { currentPage, rowsPerPage } = useSelector((state: TRootState) => state.transactions);
+
+  const changePage = (pageNumber: number) => {
+    dispatcher(setCurrentPage(pageNumber));
+  }
+
+  const changeElementsPerPage = (rowsPerPageCount: number) => {
+    dispatcher(setRowsPerPage(rowsPerPageCount));
+  };
+  
+  return (
     <BasicSection>
       <TableContainer
         colsTemplate='repeat(6, minmax(0, 1fr));'
         headerCols={ordersRows}
-        pagination={{ current: 2, totalPages: 10, changePage: console.log }}
+        pagination={{ current: currentPage, totalPages: Math.ceil(transactionsList.length / rowsPerPage), changePage}}
         rowsPerPage={{
           options: [
             { value: 10, text: '10' },
             { value: 20, text: '20' },
           ],
-          current: 20,
-          changeElementsPerPage: console.log,
+          current: rowsPerPage,
+          changeElementsPerPage,
         }}
       >
-        {WithPagination(transactionsList, 10, 0).map((transaction) => (
+        {WithPagination(transactionsList, rowsPerPage, currentPage).map((transaction) => (
           <Fragment key={transaction.id}>
             {/* Amount */}
             <TextDisplayCell text={transaction.amount} />
@@ -52,6 +68,6 @@ const Transactions: FC<TTransactionSection> = ({ transactionsList, ordersRows })
         ))}
       </TableContainer>
     </BasicSection>
-);
+)};
 
 export default Transactions;

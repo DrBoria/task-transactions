@@ -40,7 +40,7 @@ const TableContainer = ({ children, headerCols, colsTemplate, pagination, rowsPe
 
   return (
     <div>
-      <Grid colsTemplate={colsTemplate}>
+      <Grid colsTemplate={colsTemplate} offsetBottom>
         {/* Table Head */}
         {headerCols?.map(({ text, sort = () => {}, isSortable, align }) => (
           <StyledHeaderCell key={text} onClick={sort} align={align}>
@@ -68,7 +68,7 @@ const TableContainer = ({ children, headerCols, colsTemplate, pagination, rowsPe
           <Select
             name='rowsPerPage'
             id='rowsPerPage'
-            value={rowsPerPage.options[0]}
+            value={rowsPerPage.current}
             options={rowsPerPage.options}
             onChange={handleChangeRowsPerPage}
           />

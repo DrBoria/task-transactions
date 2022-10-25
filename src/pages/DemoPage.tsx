@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 
 
+import { PageContainer } from 'components/Containers';
 import { THeaderCol } from 'components/Table';
 
 
@@ -13,69 +14,53 @@ import { fetchTransactions } from 'models/transactions';
 
 
 
+import Filter from 'sections/Filter';
 import Header from 'sections/Header';
 import Transactions from 'sections/Transactions';
 
 
 
-import { dark } from 'styles/themes';
-import { PageContainer } from 'components/Containers';
+import { light } from 'styles/themes';
 
 
 const menuFields = [
   {
     id:    '1',
-    title: 'title',
-    url:   'url',
+    title: 'Home',
+    url:   '/',
   },
   {
     id:    '2',
-    title: 'title',
-    url:   'url',
-  },
-  {
-    id:    '3',
-    title: 'title',
-    url:   'url',
-  },
-  {
-    id:    '4',
-    title: 'title',
-    url:   'url',
+    title: 'Same home for navbar',
+    url:   '/',
   },
 ];
 
 const transactionColumns: THeaderCol[] = [
   {
     text: 'Amount',
-    
   },
   {
     text: 'Beneficiary',
-    
   },
   {
     text: 'Account',
-    
   },
   {
     text: 'Address',
-    
   },
   {
     text: 'Date',
-    
   },
   {
     text: 'Description',
-    
   },
 ];
 
 const TeacherSubmit = () => {
   const dispatcher = useDispatch();
 
-  const { transactionsList } = useSelector((state: TRootState) => state.transactions);
+  const { displayedTransactionsList } = useSelector((state: TRootState) => state.transactions);
 
   useEffect(() => {
     dispatcher(fetchTransactions());
@@ -85,9 +70,10 @@ const TeacherSubmit = () => {
     <>
       <Header menu={menuFields} />
 
-      <ThemeProvider theme={dark}>
+      <ThemeProvider theme={{ colors: light }}>
         <PageContainer>
-          <Transactions transactionsList={transactionsList} ordersRows={transactionColumns} />
+          <Filter />
+          <Transactions transactionsList={displayedTransactionsList} ordersRows={transactionColumns} />
         </PageContainer>
       </ThemeProvider>
     </>

@@ -1,8 +1,13 @@
 import styled, { css } from 'styled-components';
 
+
+
 import { basicFont } from 'components/Typography';
 
+
+
 import { withOffsetBottom, withOffsetsRight, TWithBasicElementOffsets, TFullWidth } from 'styles/helpers';
+
 
 type TButtonTypes = 'navigation' | 'menu';
 
@@ -38,6 +43,7 @@ const Button = styled.button<TButton>`
   margin-right: ${withOffsetsRight};
   margin-bottom: ${withOffsetBottom};
   padding: ${({ theme }) => theme.offsets.elementContent};
+  cursor: pointer;
 
   font: ${basicFont};
 

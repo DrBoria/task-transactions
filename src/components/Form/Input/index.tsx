@@ -1,11 +1,18 @@
+import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
+
+
 
 import { basicFont } from 'components/Typography';
 
+
+
 import { withOffsetBottom, withOffsetsRight, TWithBasicElementOffsets, TFullWidth } from 'styles/helpers';
+
 
 type TInputProps = {
   name: string;
+  onChagne?: ChangeEventHandler<HTMLInputElement>;
   id?: string;
   type?: string;
 } & TWithBasicElementOffsets &

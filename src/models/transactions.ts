@@ -11,11 +11,17 @@ import { toggleLoading, showHideMessage } from './ui';
 
 
 export type TUIState = {
-  transactionsList: TTransaction[];
+  loadedTransactionsList: TTransaction[];
+  displayedTransactionsList: TTransaction[];
+  currentPage: number,
+  rowsPerPage: number,
 };
 
 const initialState: TUIState = {
-  transactionsList: [],
+  loadedTransactionsList: [],
+  displayedTransactionsList: [],
+  currentPage: 0,
+  rowsPerPage: 20,
 };
 
 const transactions = createSlice({
@@ -23,12 +29,25 @@ const transactions = createSlice({
   initialState,
   reducers: {
     addTransactions(state, action) {
-      state.transactionsList = [...state.transactionsList, ...(action.payload || [])];
+      state.loadedTransactionsList = [...state.loadedTransactionsList, ...(action.payload || [])];
+      state.displayedTransactionsList = state.loadedTransactionsList;
+    },
+    filterBeneficiaryTransactions(state, action) {
+      state.displayedTransactionsList = state.loadedTransactionsList.filter((transaction) =>
+        transaction.beneficiary.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      state.currentPage = 0;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
+    setRowsPerPage(state, action: PayloadAction<number>) {
+      state.rowsPerPage = action.payload;
     },
   },
 });
 
-export const { addTransactions } = transactions.actions;
+export const { addTransactions, filterBeneficiaryTransactions, setCurrentPage, setRowsPerPage } = transactions.actions;
 export default transactions.reducer;
 
 /**
